@@ -74,11 +74,18 @@ function reporte_cdr_form($form,&$form_state){
 	return $form;
         
 	}
-	function form_example_form_validate($form, &$form_state) {
+	function reporte_cdr_form_validate($form, &$form_state) {
 	}	
 
-	function form_example_form_submit($form, &$form_state) {
+//	function reporte_cdr_form_submit($form, &$form_state) {
+//	}
+
+	function reporte_cdr_form_alter(&$form, $form_state){
+		$form['#submit'][] = 'reporte_cdr_custom_submission';
+		
 	}
 
-	
+	function reporte_cdr_custom_submission(&$form, &$form_state){
+		$form_state['redirect'] = 'consulta.php';
+	}
 
