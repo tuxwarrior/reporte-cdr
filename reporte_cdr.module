@@ -1,0 +1,65 @@
+<?php
+
+
+function reporte_cdr_menu() {
+  $items = array();
+
+  $items['formularios/reporte-cdr'] = array( //this creates a URL that will call this form at "examples/form-example"
+    'title' => 'Consulta de CDR', //page title
+    'description' => 'Formulario de consulta de CDR',
+    'page callback' => 'drupal_get_form', //this is the function that will be called when the page is accessed.  for a form, use drupal_get_form
+    'page arguments' => array('reporte_cdr_form'), //put the name of the form here
+    'access callback' => TRUE
+  );
+
+  return $items;
+}
+
+/*function reporte_crd_block(){
+	$blocks['reporte_cdr'] = array(
+		'info' => t('reporte_cdr'),
+		'cache' => DRUPAL_CACHE_PER_ROLE,
+		);
+	return $blocks;
+}
+
+*/
+	
+function reporte_cdr_form($form,&$form_state){
+		$form['tiempo_inicio'] = array(
+		'#type' => 'date_popup',
+		'#default_value' => '2015-11-02 00:00:00',
+		'#date_format' => 'Y-m-d H:i:s',
+		'#date_label_position' => 'within',
+		'#date_timezone' => 'America/El_Salvador',		
+		'#required' => TRUE,
+		'#title' => 'Fecha inicio:' 	
+			);
+		
+		$form['tiempo_final'] = array(
+		'#type' => 'date_popup',
+		'#default_value' => '2015-11-02 00:00:00',
+		'#date_format' => 'Y-m-d H:i:s',
+		'#date_label_position' => 'within',
+		'#date_timezone' => 'America/El_Salvador',		
+		'#required' => TRUE,
+		'#title' => 'Fecha fin:' 	
+			);
+
+
+	$form['submit_button'] = array(
+	'#type'=> 'submit',
+	'#value'=> t('Consultar')
+	);
+	
+	return $form;
+        
+	}
+	function form_example_form_validate($form, &$form_state) {
+	}	
+
+	function form_example_form_submit($form, &$form_state) {
+	}
+
+	
+
