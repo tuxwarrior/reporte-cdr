@@ -75,17 +75,23 @@ function reporte_cdr_form($form,&$form_state){
         
 	}
 	function reporte_cdr_form_validate($form, &$form_state) {
+		if(empty($form_state['values']['tiempo_inicio']))
+			form_set_error('tiempo_inicio', 'Debe elegir un tiempo de inicio');
+		else if(empty($form_state['values']['tiempo_final']))
+			form_set_error('tiempo_fin', 'Debe elegir un tiempo de fin');
+	
 	}	
 
-//	function reporte_cdr_form_submit($form, &$form_state) {
-//	}
+	function reporte_cdr_form_submit($form, &$form_state){
+		drupal_set_message('El formulario se ha enviado exitosamente'); 
+	}
 
-	function reporte_cdr_form_alter(&$form, $form_state){
+/*	function reporte_cdr_form_alter(&$form, $form_state){
 		$form['#submit'][] = 'reporte_cdr_custom_submission';
 		
 	}
 
 	function reporte_cdr_custom_submission(&$form, &$form_state){
 		$form_state['redirect'] = 'consulta.php';
-	}
+	}*/
 
