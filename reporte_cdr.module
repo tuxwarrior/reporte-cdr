@@ -20,6 +20,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 */
 
+// Este es para que exista un link en drupal
+
 function reporte_cdr_menu() {
   $items = array();
 
@@ -34,18 +36,19 @@ function reporte_cdr_menu() {
   return $items;
 }
 
-/*function reporte_crd_block(){
-	$blocks['reporte_cdr'] = array(
-		'info' => t('reporte_cdr'),
-		'cache' => DRUPAL_CACHE_PER_ROLE,
-		);
-	return $blocks;
-}
-
-*/
+// El formulario
 	
 function reporte_cdr_form($form,&$form_state){
-		$form['tiempo_inicio'] = array(
+		$form = array();
+		
+		$form['consultar_fecha'] = array(
+			'#type' => 'fieldset',
+			'#title' => t('Ingrese el rango del que desea reporte'),
+			'#descripcion' => t('Elija con el calendario')
+		);
+
+		
+		$form['consultar_fecha']['tiempo_inicio'] = array(
 		'#type' => 'date_popup',
 		'#default_value' => '2015-11-02 00:00:00',
 		'#date_format' => 'Y-m-d H:i:s',
@@ -55,7 +58,7 @@ function reporte_cdr_form($form,&$form_state){
 		'#title' => 'Fecha inicio:' 	
 			);
 		
-		$form['tiempo_final'] = array(
+		$form['consultar_fecha']['tiempo_final'] = array(
 		'#type' => 'date_popup',
 		'#default_value' => '2015-11-02 00:00:00',
 		'#date_format' => 'Y-m-d H:i:s',
@@ -74,6 +77,9 @@ function reporte_cdr_form($form,&$form_state){
 	return $form;
         
 	}
+
+
+// Validación
 	function reporte_cdr_form_validate($form, &$form_state) {
 		if(empty($form_state['values']['tiempo_inicio']))
 			form_set_error('tiempo_inicio', 'Debe elegir un tiempo de inicio');
@@ -82,6 +88,7 @@ function reporte_cdr_form($form,&$form_state){
 	
 	}	
 
+// Envío
 	function reporte_cdr_form_submit($form, &$form_state){
 		drupal_set_message('El formulario se ha enviado exitosamente'); 
 	}
