@@ -67,6 +67,21 @@ function reporte_cdr_form($form,&$form_state){
 		'#required' => TRUE,
 		'#title' => 'Fecha fin:' 	
 			);
+		
+		$form['consultar_fecha']['operador_origen']= array(
+		'#type' => 'textfield',
+		'#size' => 15,
+		'#maxlenght' => 100,
+		'#title' => 'Operador Origen:'
+		);
+
+		$form['consultar_fecha']['operador_destino']= array(
+		'#type' => 'textfield',
+		'#size' => 15,
+		'#maxlenght' => 100,
+		'#title' => 'Operador Destino:'
+		);
+
 
 
 	$form['submit_button'] = array(
