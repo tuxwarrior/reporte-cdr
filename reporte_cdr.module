@@ -71,6 +71,7 @@ function reporte_cdr_form($form,&$form_state){
 		$form['consultar_fecha']['operador_origen']= array(
 		'#type' => 'textfield',
 		'#size' => 15,
+		'#required' => TRUE,
 		'#maxlenght' => 100,
 		'#title' => 'Operador Origen:'
 		);
@@ -79,6 +80,7 @@ function reporte_cdr_form($form,&$form_state){
 		'#type' => 'textfield',
 		'#size' => 15,
 		'#maxlenght' => 100,
+		'#required' => TRUE,
 		'#title' => 'Operador Destino:'
 		);
 
@@ -100,6 +102,10 @@ function reporte_cdr_form($form,&$form_state){
 			form_set_error('tiempo_inicio', 'Debe elegir un tiempo de inicio');
 		else if(empty($form_state['values']['tiempo_final']))
 			form_set_error('tiempo_fin', 'Debe elegir un tiempo de fin');
+		else if(empty($form_state['values']['operador_origen']))
+			form_set_error('operador_origen', 'Debe ingrear un operador internacional');
+		else if(empty($form_state['values']['operador_destino']))
+			form_set_error('operador_destino', 'Debe ingresar un operador nacional');
 	
 	}	
 

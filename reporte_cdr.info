@@ -1,3 +1,4 @@
+;$Id$
 name = Reporte CDR
-description = Genera reportes de llamadas y consolidados y los guarda en formato excel
+description = "Genera reportes de llamadas y consolidados y los guarda en formato excel"
 core = 7.x
