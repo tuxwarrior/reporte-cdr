@@ -20,6 +20,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 */
 
+
 // Este es para que exista un link en drupal
 
 function reporte_cdr_menu() {
@@ -71,7 +72,7 @@ function reporte_cdr_form($form,&$form_state){
 		$form['consultar_fecha']['operador_origen']= array(
 		'#type' => 'textfield',
 		'#size' => 15,
-		'#required' => TRUE,
+		'#required' => FALSE,
 		'#maxlenght' => 100,
 		'#title' => 'Operador Origen:'
 		);
@@ -80,7 +81,7 @@ function reporte_cdr_form($form,&$form_state){
 		'#type' => 'textfield',
 		'#size' => 15,
 		'#maxlenght' => 100,
-		'#required' => TRUE,
+		'#required' => FALSE,
 		'#title' => 'Operador Destino:'
 		);
 
@@ -102,28 +103,21 @@ function reporte_cdr_form($form,&$form_state){
 			form_set_error('tiempo_inicio', 'Debe elegir un tiempo de inicio');
 		else if(empty($form_state['values']['tiempo_final']))
 			form_set_error('tiempo_fin', 'Debe elegir un tiempo de fin');
-		else if(empty($form_state['values']['operador_origen']))
-			form_set_error('operador_origen', 'Debe ingrear un operador internacional');
-		else if(empty($form_state['values']['operador_destino']))
-			form_set_error('operador_destino', 'Debe ingresar un operador nacional');
-	
+			
 	}	
 
 // Envío
 	function reporte_cdr_form_submit($form, &$form_state){
-		$tiempo_inicio = $form_state['values']['tiempo_inicio'];
-		$tiempo_final  = $form_state['values']['tiempo_final'];
-		$osrc = $form_state['values']['operador_origen'];
-		$odst = $form_state['values']['operador_destino'];
-		drupal_set_message('El formulario se ha enviado exitosamente'); 
-	}
+		drupal_set_message('El formulario se ha enviado exitosamente');
+		}
 
-/*	function reporte_cdr_form_alter(&$form, $form_state){
-		$form['#submit'][] = 'reporte_cdr_custom_submission';
+/*	function reporte_cdr_form_alter(&$form, $form_state,$form_id){
+		$form['#submit'][] = 'reporte_cdr_form_submit_handler';
 		
 	}
 
-	function reporte_cdr_custom_submission(&$form, &$form_state){
+	function reporte_cdr_form_submit_handler($form, &$form_state){
+		drupal_set_message("A trastear el submit");
 		$form_state['redirect'] = 'consulta.php';
-	}*/
-
+	}
+*/
