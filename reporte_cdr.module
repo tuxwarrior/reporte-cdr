@@ -111,6 +111,10 @@ function reporte_cdr_form($form,&$form_state){
 
 // Envío
 	function reporte_cdr_form_submit($form, &$form_state){
+		$tiempo_inicio = $form_state['values']['tiempo_inicio'];
+		$tiempo_final  = $form_state['values']['tiempo_final'];
+		$osrc = $form_state['values']['operador_origen'];
+		$odst = $form_state['values']['operador_destino'];
 		drupal_set_message('El formulario se ha enviado exitosamente'); 
 	}
 
