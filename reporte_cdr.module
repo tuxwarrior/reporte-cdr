@@ -32,6 +32,7 @@ function reporte_cdr_menu() {
     'page callback' => 'drupal_get_form', //this is the function that will be called when the page is accessed.  for a form, use drupal_get_form
     'page arguments' => array('reporte_cdr_form'), //put the name of the form here
     'access callback' => TRUE
+    
   );
 
   return $items;
@@ -111,12 +112,23 @@ function reporte_cdr_form($form,&$form_state){
 // Envío
 function reporte_cdr_form_submit($form, &$form_state){
 	
-	$form_state['results_table'] = reporte_get_table();
+	$form_state['results_table'] = reporte_get_table($form, $form_state);
 	$form_state['rebuild'] = TRUE;	
 }
 
 function reporte_get_table($form, $form_state){
+
+	$inicio = $form_state['values']['tiempo_inicio'];
+	$final = $form_state['values']['tiempo_final'];
 //aqui se agregara el query	
+	//Database::addConnectionInfo('cedeerres', 'default', $database_info);
+	db_set_active('CDR');
+
+	$resultado=db_query("SELECT trfvnt,osrc,duration FROM cdr WHERE calldate BETWEEN '$inicio' AND '$final'");
+	
+	db_set_active('');
+	
+	return $resultado;
 
 }
 
