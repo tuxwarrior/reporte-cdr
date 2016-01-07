@@ -85,11 +85,13 @@ function reporte_cdr_form($form,&$form_state){
 		'#title' => 'Operador Destino:'
 		);
 
+	if(!empty($form_state['results_table'])){
+		$form['results_table'] = array('#markup' => $form_state['results_table']);
+	}
 
-
-	$form['submit_button'] = array(
+	$form['submit'] = array(
 	'#type'=> 'submit',
-	'#value'=> t('Consultar')
+	'#value'=> 'Enviar',
 	);
 	
 	return $form;
@@ -107,9 +109,16 @@ function reporte_cdr_form($form,&$form_state){
 	}	
 
 // Envío
-	function reporte_cdr_form_submit($form, &$form_state){
-		drupal_set_message('El formulario se ha enviado exitosamente');
-		}
+function reporte_cdr_form_submit($form, &$form_state){
+	
+	$form_state['results_table'] = reporte_get_table();
+	$form_state['rebuild'] = TRUE;	
+}
+
+function reporte_get_table($form, $form_state){
+	
+
+}
 
 /*	function reporte_cdr_form_alter(&$form, $form_state,$form_id){
 		$form['#submit'][] = 'reporte_cdr_form_submit_handler';

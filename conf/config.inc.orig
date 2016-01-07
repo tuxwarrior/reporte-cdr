@@ -1,10 +1,10 @@
 <?php
 // Base externa
 $database_info = array(
-  'host' => '192.168.1.81', 
+  'host' => 'localhost', 
   'database' => 'cdr',
   'username' => 'viewcdr', 
-  'password' => 'wAk3Hmr4yz', 
+  'password' => '', 
   'driver' => 'mysql',
 );
 
