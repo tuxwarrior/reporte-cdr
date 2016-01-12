@@ -52,7 +52,7 @@ function reporte_cdr_form($form,&$form_state){
 		
 		$form['consultar_fecha']['tiempo_inicio'] = array(
 		'#type' => 'date_popup',
-		'#default_value' => '2015-11-02 00:00:00',
+		'#default_value' => date('Y-m-d H:i:s'),
 		'#date_format' => 'Y-m-d H:i:s',
 		'#date_label_position' => 'within',
 		'#date_timezone' => 'America/El_Salvador',		
@@ -62,7 +62,7 @@ function reporte_cdr_form($form,&$form_state){
 		
 		$form['consultar_fecha']['tiempo_final'] = array(
 		'#type' => 'date_popup',
-		'#default_value' => '2015-11-02 00:00:00',
+		'#default_value' => date('Y-m-d H:i:s'),
 		'#date_format' => 'Y-m-d H:i:s',
 		'#date_label_position' => 'within',
 		'#date_timezone' => 'America/El_Salvador',		
@@ -121,8 +121,8 @@ function reporte_get_table($form, $form_state){
 	$inicio = $form_state['values']['tiempo_inicio'];
 	$final = $form_state['values']['tiempo_final'];
 //aqui se agregara el query	
-	//Database::addConnectionInfo('cedeerres', 'default', $database_info);
-	db_set_active('CDR');
+	Database::addConnectionInfo('cderre', 'default', $database_info);
+	db_set_active('cderre');
 
 	$resultado=db_query("SELECT trfvnt,osrc,duration FROM cdr WHERE calldate BETWEEN '$inicio' AND '$final'");
 	

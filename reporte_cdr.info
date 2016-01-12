@@ -1,6 +1,5 @@
-;$Id$
 name = Reporte CDR
 description = "Genera reportes de llamadas y consolidados y los guarda en formato excel"
 core = 7.x
 dependencies[] = date
-files[]=conf/config.inc
+files[]='conf/config.inc'
